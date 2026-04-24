@@ -3,348 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Good night baby ✨</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Intro | in</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
-        :root {
-            --pink: #ff75c3;
-            --purple: #bf00ff;
-            --gold: #ffd700;
-            --deep-purple: #1a0033;
-            --glass: rgba(255, 255, 255, 0.08);
-            --text-glow: 0 0 10px rgba(255, 117, 195, 0.7);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            background-color: var(--deep-purple);
-            background-image: 
-                radial-gradient(at 10% 10%, rgba(191, 0, 255, 0.15) 0px, transparent 50%),
-                radial-gradient(at 90% 90%, rgba(255, 117, 195, 0.15) 0px, transparent 50%);
-            color: white;
-            font-family: 'Poppins', sans-serif;
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@400;700&family=Cinzel+Decorative:wght@700&display=swap');
+        
+        body, html {
+            margin: 0; padding: 0;
             overflow: hidden;
-            height: 100vh;
+            background: linear-gradient(135deg, #fffdf8, #fff1f6, #f2e9ff);
+            font-family: 'Playfair Display', serif;
+            color: #333;
         }
-
-        /* --- Background Effects (Stars and Moon) --- */
-        .sky { position: fixed; width: 100%; height: 100%; z-index: -1; }
         
-        .moon {
-            position: absolute; top: 10%; right: 10%; width: 120px; height: 120px;
-            background: #fff; border-radius: 50%;
-            box-shadow: 0 0 60px #fff, 0 0 120px rgba(255,255,255,0.3);
-            animation: moonPulse 4s infinite ease-in-out;
-        }
-        @keyframes moonPulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; } }
-
-        .star { position: absolute; background: white; border-radius: 50%; animation: twinkle var(--d) infinite ease-in-out; }
-        @keyframes twinkle { 0%, 100% { opacity: 0.2; transform: scale(1); } 50% { opacity: 1; transform: scale(1.4); } }
+        .premium-font { font-family: 'Dancing Script', cursive; font-weight: 700; }
+        .title-font { font-family: 'Cinzel Decorative', cursive; letter-spacing: 3px; }
         
-        .special-star { font-size: 2.5rem; color: var(--pink); animation: specialTwinkle 2s infinite; position: absolute; }
-        @keyframes specialTwinkle { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
-
-        /* --- Global Layout --- */
-        .insta-tag {
-            position: fixed; top: 15px; width: 100%; text-align: center;
-            font-size: 13px; letter-spacing: 4px; color: var(--pink); z-index: 100; font-weight: 600;
+        .section {
+            position: absolute; inset: 0;
+            display: none; opacity: 0;
+            align-items: center; justify-content: center; flex-direction: column;
+            padding: 20px; width: 100vw; height: 100vh;
+            text-align: center;
         }
 
-        section {
-            height: 100vh; width: 100%; display: flex; justify-content: center;
-            align-items: center; position: absolute; transition: transform 1s cubic-bezier(0.86, 0, 0.07, 1), opacity 1s ease-in-out;
-            visibility: hidden; opacity: 0;
-        }
-        section.active { visibility: visible; opacity: 1; }
+        .section.active { display: flex; opacity: 1; }
 
-        .card {
-            background: var(--glass); backdrop-filter: blur(25px);
-            border: 1px solid rgba(255,255,255,0.15); padding: 35px 25px;
-            border-radius: 30px; text-align: center; max-width: 420px; width: 92%;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-            position: relative;
+        .glass-premium {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            border-radius: 30px;
+            padding: 2rem;
+            z-index: 10;
         }
 
-        h1.main-title { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 2rem; color: var(--pink); margin-bottom: 20px; text-shadow: var(--text-glow); }
-        h1.romantic-title { font-family: 'Dancing Script', cursive; font-size: 2.6rem; color: var(--pink); margin-bottom: 15px; text-shadow: var(--text-glow); }
-        
-        p.sub-text { font-size: 1.1rem; color: rgba(255,255,255,0.85); line-height: 1.6; font-weight: 300; }
-
-        .btn {
-            background: linear-gradient(45deg, var(--pink), var(--purple)); border: none;
-            color: white; padding: 14px 35px; border-radius: 30px; cursor: pointer; margin-top: 25px;
-            font-weight: 600; font-size: 1rem; letter-spacing: 1px;
-            box-shadow: 0 5px 20px rgba(191, 0, 255, 0.3); transition: transform 0.3s, box-shadow 0.3s;
+        .profile-img {
+            width: 180px; height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
         }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(191, 0, 255, 0.5); }
-        .btn:active { transform: translateY(0px); }
 
-        img.photo { width: 100%; height: 320px; object-fit: cover; border-radius: 20px; margin-bottom: 20px; border: 3px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        video { width: 100%; border-radius: 20px; margin-top: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .btn-next {
+            margin-top: 30px;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: white;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 117, 140, 0.3);
+            cursor: pointer;
+        }
 
-        /* --- image_2.png function: Love Gauge --- */
-        .gauge-container { position: relative; width: 300px; height: 150px; margin: 30px auto; }
-        .gauge-body { position: absolute; width: 100%; height: 100%; border-radius: 150px 150px 0 0; background: #333; overflow: hidden; }
-        .gauge-fill { position: absolute; top: 100%; left: 0; width: 100%; height: 100%; background: linear-gradient(0deg, var(--purple), var(--pink)); transform-origin: center top; transform: rotate(0deg); transition: transform 2s cubic-bezier(0.1, 0.7, 1.0, 0.1); }
-        .gauge-cover { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 70%; height: 70%; background: var(--deep-purple); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-        .gauge-needle { position: absolute; bottom: 0; left: 50%; width: 4px; height: 100%; background: white; transform-origin: bottom center; transform: rotate(-90deg); transition: transform 2s cubic-bezier(0.1, 0.7, 1.0, 0.1); z-index: 5; box-shadow: 0 0 10px rgba(255,255,255,0.5); }
-        .heart-marker { position: absolute; font-size: 1.5rem; color: var(--purple); opacity: 0.5; transition: 0.5s; }
-        .heart-marker.active { color: var(--pink); opacity: 1; transform: scale(1.2); }
+        .btn-next:hover { transform: scale(1.05); }
 
-        /* --- image_0.png/image_1.png function: Connected Messages --- */
-        .message-chain { position: relative; width: 100%; height: 350px; margin: 20px 0; }
-        .msg-bubble { position: absolute; background: rgba(191, 0, 255, 0.9); padding: 15px 20px; border-radius: 15px; max-width: 250px; color: white; font-size: 0.95rem; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: 0.5s; opacity: 0; transform: translateY(20px); }
-        .msg-bubble.show { opacity: 1; transform: translateY(0); }
-        .msg-node { position: absolute; width: 15px; height: 15px; background: rgba(255, 117, 195, 0.7); border-radius: 50%; box-shadow: 0 0 15px rgba(255, 117, 195, 1); }
-        .msg-line { position: absolute; height: 2px; background: rgba(255, 255, 255, 0.3); transform-origin: left center; width: 0; transition: width 0.5s; }
-        
-        /* --- image_3.png function: Glowing Stars --- */
-        .glowing-stars-container { position: relative; width: 100%; height: 150px; display: flex; justify-content: center; align-items: center; gap: 30px; margin: 20px 0; }
-        .glowing-star { font-size: 3.5rem; color: #ffff33; text-shadow: 0 0 20px #ffff33, 0 0 40px #ffff33; animation: starPulse 2s infinite ease-in-out; }
-        @keyframes starPulse { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } }
+        .particle {
+            position: fixed; top: -5%;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to { transform: translateY(105vh) rotate(360deg); }
+        }
 
-        /* --- Scratch Card --- */
-        .scratch-wrap { position: relative; width: 220px; height: 110px; margin: 20px auto; background: white; border-radius: 15px; overflow: hidden; border: 3px solid #eee; }
-        .scratch-text { position: absolute; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; color: #333; font-weight: bold; font-size: 1.3rem; font-family: 'Dancing Script', cursive; }
-        canvas.scratch-layer { position: absolute; top: 0; left: 0; cursor: crosshair; }
-
+        /* Branding Style */
+        .branding {
+            position: fixed;
+            top: 15px;
+            width: 100%;
+            text-align: center;
+            z-index: 100;
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: rgba(0,0,0,0.4);
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
 
-    <div class="insta-tag">INSTA - @SMSS1708</div>
-    
-    <div class="sky" id="sky">
-        <div class="moon"></div>
-    </div>
+    <div class="branding">INSTA  @SMSS1708 💖</div>
 
-    <audio id="bgMusic" loop><source src="tere-liye.mp3" type="audio/mpeg"></audio>
+    <audio id="bgMusic" loop>
+        <source src="tere-liye.mp3" type="audio/mpeg">
+    </audio>
 
-    <section id="s1" class="active">
-        <div class="card">
-            <h1 class="main-title">I made something for you😘✨</h1>
-            <p class="sub-text">Tonight, I have a special journey just for you. Are you ready?</p>
-            <button class="btn" onclick="startJourney()">Chalo Shuru Karein ➔</button>
+    <div id="particles"></div>
+
+    <section id="page1" class="section active">
+        <div class="glass-premium">
+            <img src="photo1.jpg" alt="Tanya" class="profile-img">
+            <h1 class="text-5xl premium-font text-rose-600 mb-2">Hello, I'm</h1>
+            <h2 class="text-6xl title-font text-gray-800">TANYA</h2>
+            <button onclick="startExperience()" class="btn-next">Click to Enter ✨</button>
         </div>
     </section>
 
-    <section id="s2"><div class="card"><img src="photo1.jpg" class="photo"><h1 class="romantic-title">Our Story Begins</h1><p class="sub-text">Hamari dosti mere liye ek khoobsurat khwaab jaisi hai.</p><button class="btn" onclick="go(2,3)">Next ➔</button></div></section>
-    
-    <section id="s3">
-        <div class="card">
-            <div class="message-chain" id="msgChain1">
-                <div class="msg-node" style="top: 10%; left: 10%;"></div>
-                <div class="msg-bubble" style="top: 15%; left: 5%;" id="b1">You read my silence like a language of love.</div>
-                
-                <div class="msg-line" style="top: 10%; left: 10%; transform: rotate(20deg);" id="l1"></div>
-                
-                <div class="msg-node" style="top: 30%; left: 60%;"></div>
-                <div class="msg-bubble" style="top: 35%; left: 50%;" id="b2">You turn simple days into memories.</div>
-
-                <div class="msg-line" style="top: 30%; left: 60%; transform: rotate(140deg);" id="l2"></div>
-
-                <div class="msg-node" style="top: 60%; left: 15%;"></div>
-                <div class="msg-bubble" style="top: 65%; left: 10%;" id="b3">You stand with me, not just beside me.</div>
-            </div>
-            <button class="btn" onclick="showChain(1)">Reveal Reason</button>
-            <button class="btn" style="display:none;" id="nextChain1" onclick="go(3,4)">Next ➔</button>
-        </div>
-    </section>
-
-    <section id="s4"><div class="card"><img src="photo2.jpg" class="photo"><h1 class="romantic-title">My Star</h1><p class="sub-text">Duniya mein sabse chamakdar cheez tumhari smile hai. ✨</p><button class="btn" onclick="go(4,5)">Next ➔</button></div></section>
-    
-    <section id="s5">
-        <div class="card">
-            <h1 class="main-title">Love Compatibility Test</h1>
-            <p class="sub-text">Let's see how strongly our hearts connect...</p>
+    <section id="page2" class="section">
+        <div class="glass-premium max-w-sm w-full">
+            <i class="fa-solid fa-location-dot text-4xl text-rose-500 mb-4"></i>
+            <h2 class="text-4xl premium-font mb-2">I belong to</h2>
+            <p class="text-5xl font-bold text-gray-800 mb-8">PUNJAB</p>
             
-            <div class="gauge-container">
-                <div class="heart-marker" style="bottom: 0%; left: -5%;" id="hm1">💜</div>
-                <div class="heart-marker" style="bottom: 40%; left: 10%;" id="hm2">💜</div>
-                <div class="heart-marker" style="top: 10%; left: 25%;" id="hm3">💜</div>
-                <div class="heart-marker" style="top: 5%; left: 50%; transform: translateX(-50%);" id="hm4">💜</div>
-                
-                <div class="gauge-body">
-                    <div class="gauge-fill" id="gFill"></div>
-                    <div class="gauge-cover"><div class="romantic-title" style="font-size: 1.5rem;">HOME</div></div>
-                </div>
-                <div class="gauge-needle" id="gNeedle"></div>
-            </div>
-            <p class="sub-text" id="gaugeStatus">Calculating love...</p>
-            <button class="btn" onclick="runGauge()">Check Connection</button>
-            <button class="btn" style="display:none;" id="nextGauge" onclick="go(5,6)">Next ➔</button>
-        </div>
-    </section>
-
-    <section id="s6"><div class="card"><img src="photo3.jpg" class="photo"><h1 class="romantic-title">Unconditional</h1><p class="sub-text">Tumhare saath hona meri har khushi ka raaz hai.</p><button class="btn" onclick="go(6,7)">Next ➔</button></div></section>
-    
-    <section id="s7">
-        <div class="card">
-            <p class="romantic-title" style="font-size: 2rem;">You show up.</p>
-            <div class="glowing-stars-container">
-                <div class="glowing-star">⭐</div>
-                <div class="glowing-star" style="animation-delay: 0.5s;">⭐</div>
-                <div class="sub-text" style="font-size: 2.5rem; color: rgba(255,255,255,0.4);">+</div>
-            </div>
-            <p class="sub-text">And make everything brighter. Never change!</p>
-            <button class="btn" onclick="go(7,8)">Next ➔</button>
-        </div>
-    </section>
-
-    <section id="s8"><div class="card"><img src="photo4.jpg" class="photo"><h1 class="romantic-title">So Much Love</h1><p class="sub-text">Agar main count karne bethu, toh zindagi kam pad jaye.</p><button class="btn" onclick="go(8,9)">Next ➔</button></div></section>
-    <section id="s9"><div class="card"><img src="photo5.jpg" class="photo"><h1 class="romantic-title">Pure Trust</h1><p class="sub-text">Tum wo insaan ho jiske pass mera har raaz mehfooz hai.</p><button class="btn" onclick="go(9,10)">Next ➔</button></div></section>
-    <section id="s10"><div class="card"><img src="photo6.jpg" class="photo"><h1 class="romantic-title">Final Promise</h1><p class="sub-text">Bas hamesha mere saath rehna, meri bestie.</p><button class="btn" onclick="go(10,11)">Next ➔</button></div></section>
-
-    <section id="s11">
-        <div class="card">
-            <h1 class="main-title">Gifts For You 🎁</h1>
-            <p class="sub-text">Scratch karo aur surprise dekho!</p>
+            <hr class="border-rose-100 mb-8">
             
-            <div class="scratch-wrap">
-                <div class="scratch-text">A Long Hug! 🤗</div>
-                <canvas id="c1" class="scratch-layer" width="220" height="110"></canvas>
-            </div>
+            <i class="fa-solid fa-cake-candles text-4xl text-amber-500 mb-4"></i>
+            <h2 class="text-4xl premium-font mb-2">Sweet</h2>
+            <p class="text-5xl font-bold text-gray-800">17 Years Old</p>
             
-            <div class="scratch-wrap">
-                <div class="scratch-text">Unlimited Chocolates! 🍫</div>
-                <canvas id="c2" class="scratch-layer" width="220" height="110"></canvas>
-            </div>
-
-            <div class="scratch-wrap">
-                <div class="scratch-text">Mela bachha! ❤️</div>
-                <canvas id="c3" class="scratch-layer" width="220" height="110"></canvas>
-            </div>
-            
-            <button class="btn" onclick="go(11,12)">Now, Video ➔</button>
+            <button onclick="nextPage('page3')" class="btn-next">Next Page ➔</button>
         </div>
     </section>
 
-    <section id="s12">
-        <div class="card">
-            <h1 class="main-title">Video For You 🎥</h1>
-            <video id="mainVid" controls>
-                <source src="video1.mp4" type="video/mp4">
-            </video>
-            <p class="sub-text" style="margin-top:10px;">Good Night, My bachhu 🤌! ❤️</p>
-            <button class="btn" onclick="go(12,13)">Last Message ➔</button>
-        </div>
-    </section>
-
-    <section id="s13">
-        <div class="card">
-            <h1 class="romantic-title">Sweet Dreams 🌙</h1>
-            <p class="sub-text">Aankhein band karo, aur pyaare se sapno mein kho jao.</p>
-            <p style="color:var(--gold); margin-top:20px; font-weight: 600;">Always here for you, Baby. 💖</p>
-            <button class="btn" onclick="location.reload()">Replay ✨</button>
+    <section id="page3" class="section">
+        <div class="glass-premium max-w-sm w-full">
+            <div class="text-6xl mb-6">📚✏️</div>
+            <h2 class="text-5xl premium-font mb-4 text-rose-600">My Hobby</h2>
+            <p class="text-3xl text-gray-700 leading-relaxed italic">
+                "I find peace in <span class="font-bold text-gray-900">Studying</span> and learning new things every day."
+            </p>
+            <button onclick="nextPage('page1')" class="btn-next">Restart ↺</button>
         </div>
     </section>
 
     <script>
-        // Star Background Setup
-        const sky = document.getElementById('sky');
-        for (let i = 0; i < 120; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            let size = Math.random() * 3 + 'px';
-            star.style.width = size; star.style.height = size;
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.setProperty('--d', Math.random() * 3 + 2 + 's');
-            sky.appendChild(star);
-        }
-        
-        // Special 'Reasons Why I Love You' Star
-        const sStar = document.createElement('div');
-        sStar.className = 'special-star';
-        sStar.innerHTML = '✨';
-        sStar.style.top = '10%'; sStar.style.left = '50%'; sStar.style.transform = 'translateX(-50%)';
-        sky.appendChild(sStar);
+        const audio = document.getElementById('bgMusic');
 
-        const music = document.getElementById('bgMusic');
-        const video = document.getElementById('mainVid');
-
-        function startJourney() { go(1,2); music.play(); }
-
-        function go(curr, next) {
-            document.getElementById('s' + curr).classList.remove('active');
-            document.getElementById('s' + next).classList.add('active');
-
-            // Handle Scratch Cards Init
-            if(next === 11) { initScratch('c1'); initScratch('c2'); initScratch('c3'); }
-
-            // Handle Sound Logic on Video Page
-            if (next === 12) {
-                music.pause();
-                music.currentTime = 0;
-            } else if (curr === 12 && next === 13) {
-                video.pause();
-            }
+        function startExperience() {
+            // Play music on first interaction
+            audio.play().catch(e => console.log("Audio play error:", e));
+            nextPage('page2');
         }
 
-        // image_2.png function: Love Gauge
-        let gaugeRun = false;
-        function runGauge() {
-            if(gaugeRun) return;
-            gaugeRun = true;
-            document.getElementById('gNeedle').style.transform = 'rotate(85deg)';
-            document.getElementById('gFill').style.transform = 'rotate(170deg)';
-            
-            // Activate hearts as gauge rises
-            setTimeout(() => document.getElementById('hm1').classList.add('active'), 200);
-            setTimeout(() => document.getElementById('hm2').classList.add('active'), 600);
-            setTimeout(() => document.getElementById('hm3').classList.add('active'), 1200);
-            setTimeout(() => {
-                document.getElementById('hm4').classList.add('active');
-                document.getElementById('gaugeStatus').innerHTML = "Status: Infinite Love! 💖";
-                document.getElementById('nextGauge').style.display = 'inline-block';
-            }, 2000);
+        function nextPage(nextId) {
+            const current = document.querySelector('.section.active');
+            const next = document.getElementById(nextId);
+
+            gsap.to(current, { opacity: 0, y: -20, duration: 0.5, onComplete: () => {
+                current.classList.remove('active');
+                next.classList.add('active');
+                gsap.fromTo(next, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 });
+            }});
         }
 
-        // image_0.png function: Connected Messages Chain
-        let chainStep = 0;
-        function showChain(id) {
-            chainStep++;
-            if(chainStep === 1) {
-                document.getElementById('b1').classList.add('show');
-                document.getElementById('l1').style.width = '200px'; // Approx distance
-            } else if(chainStep === 2) {
-                document.getElementById('b2').classList.add('show');
-                document.getElementById('l2').style.width = '180px'; // Approx distance
-            } else if(chainStep === 3) {
-                document.getElementById('b3').classList.add('show');
-                document.getElementById('nextChain1').style.display = 'inline-block';
-            }
+        // Floating Particles
+        const container = document.getElementById('particles');
+        const icons = ['🌸', '✨', '📖', '💖'];
+        for (let i = 0; i < 15; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.innerText = icons[Math.floor(Math.random() * icons.length)];
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            p.style.opacity = Math.random() * 0.5 + 0.2;
+            p.style.fontSize = Math.random() * 20 + 10 + 'px';
+            container.appendChild(p);
         }
-
-        // Scratch Card Logic
-        function initScratch(canvasId) {
-            const canvas = document.getElementById(canvasId);
-            const ctx = canvas.getContext('2d');
-            ctx.fillStyle = '#888';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.globalCompositeOperation = 'destination-out';
-
-            let isDrawing = false;
-            const scrub = (e) => {
-                if (!isDrawing) return;
-                e.preventDefault();
-                const rect = canvas.getBoundingClientRect();
-                const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
-                const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
-                ctx.beginPath();
-                ctx.arc(x, y, 18, 0, Math.PI * 2);
-                ctx.fill();
-            };
-
-            canvas.addEventListener('mousedown', () => isDrawing = true);
-            canvas.addEventListener('touchstart', (e) => { isDrawing = true; scrub(e); });
-            window.addEventListener('mouseup', () => isDrawing = false);
-            window.addEventListener('touchend', () => isDrawing = false);
-            canvas.addEventListener('mousemove', scrub);
-            canvas.addEventListener('touchmove', scrub);
-        }
-
     </script>
 </body>
 </html>
